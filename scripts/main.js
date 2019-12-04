@@ -8,9 +8,14 @@ mybtn.onclick = (event) => {               //W4D4 (:34:)
     const inputField = document.querySelector("#myinput");
     console.log("Input value is: " + inputField.value);
 
-    //Add new ToDo: Create NewEl-->DabutSaturs->PieliktBernu
-    const newTodo = document.createElement("div");           //W4D4 (:40:)
-    newTodo.innerText = inputField.value;
+    //Add new ToDo: Create NewEl-->DabutSaturs->PieliktBernu  //W4D4 (:40:)
     const todoCont = document.querySelector("#todos-cont");
-    todoCont.appendChild(newTodo);
+    
+    addTodo(todoCont, inputField.value);
+}
+
+ function addTodo(parent, value) {           //W4D4 (:53:)
+    const newTodo = document.createElement("div");         
+    newTodo.innerText = value;
+    parent.appendChild(newTodo);
 }
