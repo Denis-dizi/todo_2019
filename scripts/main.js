@@ -42,6 +42,7 @@ function main() {                           //W4D4 (1:15:)
     
     delBtn.onclick = function(event) {
         console.log("removing parent of element with id "+this.id);
+        
         //if we use arrow func. this won't be available for button  //1.v. W4D4 (1:37:)
         //this.parentElement.remove();
 
@@ -53,6 +54,16 @@ function main() {                           //W4D4 (1:15:)
         //such as .job-vont-myid
     }
 
+    const chkBox = newTodo.querySelector('[type="checkbox"]');  //W4D4 (1:58:)
+
+    chkBox.onclick = function(event) {                //W4D4 (1:58:)
+         if (event.target.checked) {
+             //console.log("nextSibling "+event.target.nextSibling.id);
+             event.target.nextElementSibling.style.textDecoration = "line-through";
+         }else{
+              event.target.nextElementSibling.style.textDecoration = "none";
+         }
+    }
     //TODO move updating to separate function
     app.jobId++;
     //add Handlers
