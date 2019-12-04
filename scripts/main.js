@@ -57,11 +57,18 @@ function main() {                           //W4D4 (1:15:)
     const chkBox = newTodo.querySelector('[type="checkbox"]');  //W4D4 (1:58:)
 
     chkBox.onclick = function(event) {                //W4D4 (1:58:)
-         if (event.target.checked) {
+        //const jDesc = event.target.nextElementSibling;//W4D4 (2:15:)
+        
+        //tricker alternative using id and spliting our id
+        const id = event.target.id.split("-")[2];   //W4D4 (2:16:)
+        const descId = "#j-desc-"+id;
+        const jDesc = document.querySelector(descId);
+        
+        if (event.target.checked) {
              //console.log("nextSibling "+event.target.nextSibling.id);
-             event.target.nextElementSibling.style.textDecoration = "line-through";
+             jDesc.style.textDecoration = "line-through";
          }else{
-              event.target.nextElementSibling.style.textDecoration = "none";
+             jDesc.style.textDecoration = "none";
          }
     }
     //TODO move updating to separate function
