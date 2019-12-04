@@ -7,10 +7,7 @@ const app = {
 } 
 main();
 
-
 function main() {                           //W4D4 (1:15:)
-
-
     //we create an event handler for add button
     app.mybtn.onclick = (event) => {               //W4D4 (:34:)
         console.log("You pressed ADD btn");
@@ -34,6 +31,8 @@ function main() {                           //W4D4 (1:15:)
         <button class="del-btn" id="j-del-${app.jobId}">DELETE</button>
         `;
     //newTodo only has one span
+
+    //value could be malicious so we only use innerText not innerHTML!!!
     const jdesc = newTodo.querySelector("span");
     jdesc.innerText = value;
 
