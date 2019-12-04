@@ -39,8 +39,20 @@ function main() {                           //W4D4 (1:15:)
 
     parent.appendChild(newTodo);
 
+    const delBtn = newTodo.querySelector(".del-btn");//W4D4 (1:37:)
     
+    delBtn.onclick = function(event) {
+        console.log("removing parent of element with id "+this.id);
+        //if we use arrow func. this won't be available for button  //1.v. W4D4 (1:37:)
+        //this.parentElement.remove();
 
+        //careful with event if possible bubbling   //2.v. W4D4 (1:45:)
+        event.target.parentElement.remove();
+
+        //third way would be get id of the element  //3.v. W4D4 (1:46:)
+        //parse that id and use that id to get needed element
+        //such as .job-vont-myid
+    }
 
     //TODO move updating to separate function
     app.jobId++;
@@ -48,3 +60,12 @@ function main() {                           //W4D4 (1:15:)
     //ToDo
 }
 
+
+
+
+/* rezerve: delete 1.variants.
+const delBtn = newTodo.querySelector(".del-btn");//W4D4 (1:37:)
+    delBtn.onclick = function() {
+        console.log("removing parent of element with id "+this.id);
+        this.parentElement.remove();
+    }*/
