@@ -29,11 +29,16 @@ function main() {                           //W4D4 (1:15:)
 }
 
 function addJobs(json) {                        //W4D4 (2:34:)
-    console.log("Ready to add "+ json.length + " jobs");
+    console.log("Ready to add " + json.length + " jobs");
 
     console.log("Adding",json[0]);
 
-    addTodo(app.todoCount, json[0].title);
+
+    //create a loop to add first 20 jobs, can remove && i < 20 when done testing
+    for (let i=0; i < json.length && i<20; i++) {                  //W4D4 (2:46:)
+    addTodo(app.todoCont, json[i].title);
+    }
+
 }
 
 
@@ -74,6 +79,7 @@ function addJobs(json) {                        //W4D4 (2:34:)
     const chkBox = newTodo.querySelector('[type="checkbox"]');  //W4D4 (1:58:)
 
     chkBox.onclick = function(event) {                //W4D4 (1:58:)
+        
         //const jDesc = event.target.nextElementSibling;//W4D4 (2:15:)
         
         //tricker alternative using id and spliting our id
@@ -87,7 +93,9 @@ function addJobs(json) {                        //W4D4 (2:34:)
          }else{
              jDesc.style.textDecoration = "none";
          }
+
     }
+
     //TODO move updating to separate function
     app.jobId++;
     //add Handlers
