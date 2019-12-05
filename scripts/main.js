@@ -1,11 +1,12 @@
-console.log("Started ToDo app.");           //W4D4 created
+console.log("Started ToDo app.");           //W4D4 created, W4D5
 //app holds our global state
 const app = {
     jobId : 0,
     mybtn : document.querySelector("#btn1"),
     todoCont : document.querySelector("#todos-cont"),
     getBtn : document.querySelector("#btn0"),    //W4D4 (2:27:)
-    jobsUrl : "https://jsonplaceholder.typicode.com/todos"
+    jobsUrl : "https://jsonplaceholder.typicode.com/todos",
+    inputField : document.querySelector("#myinput")    //W4D5 (:28:)
 };
 main();
 
@@ -13,11 +14,10 @@ function main() {                           //W4D4 (1:15:)
     //we create an event handler for add button
     app.mybtn.onclick = (event) => {               //W4D4 (:34:)
         console.log("You pressed ADD btn");
-        const inputField = document.querySelector("#myinput");
-        console.log("Input value is: " + inputField.value);
+        console.log("Input value is: " + app.inputField.value);
 
         //Add new ToDo: Create NewEl-->DabutSaturs->PieliktBernu  //W4D4 (:40:)
-        addTodo(app.todoCont, inputField.value);
+        addTodo(app.todoCont, app.inputField.value);
     }
 
     app.getBtn.onclick = () => {                //W4D4 (2:27:)
