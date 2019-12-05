@@ -24,7 +24,7 @@ function main() {                           //W4D4 (1:15:)
     //meaning click outside, enter key, click on button outside etc
     //so we will use specific keyboard event
 
-    app.inputField.onkeyup = function(event) {         //W4D5 (:45:)
+    app.inputField.onkeydown = function(event) {         //W4D5 (:45:)
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
           // Cancel the default action, if needed
