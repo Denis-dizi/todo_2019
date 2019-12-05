@@ -4,7 +4,8 @@ const app = {
     jobId : 0,
     mybtn : document.querySelector("#btn1"),
     todoCont : document.querySelector("#todos-cont"),
-    getBtn : document.querySelector("#btn0")    //W4D4 (2:27:)
+    getBtn : document.querySelector("#btn0"),    //W4D4 (2:27:)
+    jobsUrl : "https://jsonplaceholder.typicode.com/todos"
 };
 main();
 
@@ -21,13 +22,23 @@ function main() {                           //W4D4 (1:15:)
 
     app.getBtn.onclick = () => {                //W4D4 (2:27:)
         console.log("You pressed get Jobs btn");
-        fetch('https://jsonplaceholder.typicode.com/todos/1')
+        fetch(app.jobsUrl)
             .then(response => response.json())
-            .then(json => console.log(json))
+            .then(json => addJobs(json))
     }
 }
 
- function addTodo(parent, value) {           //W4D4 (:53:)
+function addJobs(json) {                        //W4D4 (2:34:)
+    console.log("Ready to add "+ json.length + " jobs");
+
+    console.log("Adding",json[0]);
+
+    addTodo(app.todoCount, json[0].title);
+}
+
+
+
+ function addTodo(parent, value) {             //W4D4 (:53:)
     //Create New Todo
     const newTodo = document.createElement("div");//W4D4 (1:13:);updated:(1:23:);
     newTodo.classList.add("job-cont-"+app.jobId);
