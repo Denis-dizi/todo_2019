@@ -20,12 +20,29 @@ function main() {                           //W4D4 (1:15:)
         addTodo(app.todoCont, app.inputField.value);
     }
 
+    //app.inputField.onchange this will fire on any commitment
+    //meaning click outside, enter key, click on button outside etc
+    //so we will use specific keyboard event
+
+    app.inputField.onkeyup = function(event) {         //W4D5 (:45:)
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+          // Cancel the default action, if needed
+          console.log("You pressed Enter");
+          event.preventDefault();
+          // Trigger the button element with a click
+          app.mybtn.click();
+        }
+      }; 
+
     app.getBtn.onclick = () => {                //W4D4 (2:27:)
         console.log("You pressed get Jobs btn");
         fetch(app.jobsUrl)
             .then(response => response.json())
             .then(json => addJobs(json))
     }
+
+
 }
 
 function addJobs(json) {                        //W4D4 (2:34:)
@@ -36,7 +53,7 @@ function addJobs(json) {                        //W4D4 (2:34:)
 
     //create a loop to add first 20 jobs, can remove && i < 20 when done testing
     for (let i=0; i < json.length && i<20; i++) {                  //W4D4 (2:46:)
-    addTodo(app.todoCont, json[i].title);
+        addTodo(app.todoCont, json[i].title);
     }
 
 }
@@ -52,7 +69,7 @@ function addJobs(json) {                        //W4D4 (2:34:)
         <label class="job-desc" id="j-desc-${app.jobId}"></label>
         <button class="del-btn" id="j-del-${app.jobId}">DELETE</button>
         `;
-    //newTodo only has one span
+    //newTodo only has one label
 
     //value could be malicious so we only use innerText not innerHTML!!!
     const jdesc = newTodo.querySelector("label");
@@ -73,7 +90,7 @@ function addJobs(json) {                        //W4D4 (2:34:)
 
         //third way would be get id of the element  //3.v. W4D4 (1:46:)
         //parse that id and use that id to get needed element
-        //such as .job-vont-myid
+        //such as .job-cont-myid
     }
 
     const chkBox = newTodo.querySelector('[type="checkbox"]');  //W4D4 (1:58:)
@@ -98,6 +115,7 @@ function addJobs(json) {                        //W4D4 (2:34:)
 
     //TODO move updating to separate function
     app.jobId++;
+
     //add Handlers
     //ToDo
 }
@@ -110,4 +128,15 @@ const delBtn = newTodo.querySelector(".del-btn");//W4D4 (1:37:)
     delBtn.onclick = function() {
         console.log("removing parent of element with id "+this.id);
         this.parentElement.remove();
+    
+    
+    
+app.inputField.onchange = () => {
+    console.log("New input is:  " + app.inputField.value);
+}
+    
+    
+    
+    
+    
     }*/
