@@ -3,8 +3,9 @@ console.log("Started ToDo app.");           //W4D4 created
 const app = {
     jobId : 0,
     mybtn : document.querySelector("#btn1"),
-    todoCont : document.querySelector("#todos-cont")
-} 
+    todoCont : document.querySelector("#todos-cont"),
+    getBtn : document.querySelector("#btn0")    //W4D4 (2:27:)
+};
 main();
 
 function main() {                           //W4D4 (1:15:)
@@ -15,9 +16,14 @@ function main() {                           //W4D4 (1:15:)
         console.log("Input value is: " + inputField.value);
 
         //Add new ToDo: Create NewEl-->DabutSaturs->PieliktBernu  //W4D4 (:40:)
-       
-        
         addTodo(app.todoCont, inputField.value);
+    }
+
+    app.getBtn.onclick = () => {                //W4D4 (2:27:)
+        console.log("You pressed get Jobs btn");
+        fetch('https://jsonplaceholder.typicode.com/todos/1')
+            .then(response => response.json())
+            .then(json => console.log(json))
     }
 }
 
