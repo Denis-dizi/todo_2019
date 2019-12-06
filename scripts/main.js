@@ -6,8 +6,12 @@ const app = {
     todoCont : document.querySelector("#todos-cont"),
     getBtn : document.querySelector("#btn0"),    //W4D4 (2:27:)
     jobsUrl : "https://jsonplaceholder.typicode.com/todos",
-    inputField : document.querySelector("#myinput")    //W4D5 (:28:)
-};
+    inputField : document.querySelector("#myinput"),    //W4D5 (:28:)
+    cfg : {                                      //W4D5 (1:05:)
+        maxKeyDown : 10,
+        },
+        currKeyDown : 0
+    };
 main();
 
 function main() {                           //W4D4 (1:15:)
@@ -27,13 +31,26 @@ function main() {                           //W4D4 (1:15:)
     app.inputField.onkeydown = function(event) {         //W4D5 (:45:)
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
-          // Cancel the default action, if needed
+
+            //limiting max times that onkeydown Enter will add element
+            if (app.currKeyDown >= app.cfg.maxKeyDown) return;                    //W4D5 (1:05:)
+          
+            app.currKeyDown++;
+            // Cancel the default action, if needed
           console.log("You pressed Enter");
           event.preventDefault();
           // Trigger the button element with a click
           app.mybtn.click();
         }
       }; 
+
+      app.inputField.onkeyup = (event) => {         //W4D5 (:45:)(1:11:)
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            console.log("Reseting keydown count");
+            app.currKeyDown = 0;
+        }
+    }
 
     app.getBtn.onclick = () => {                //W4D4 (2:27:)
         console.log("You pressed get Jobs btn");
