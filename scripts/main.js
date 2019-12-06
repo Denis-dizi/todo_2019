@@ -7,6 +7,7 @@ const app = {
     getBtn : document.querySelector("#btn0"),    //W4D4 (2:27:)
     jobsUrl : "https://jsonplaceholder.typicode.com/todos",
     inputField : document.querySelector("#myinput"),    //W4D5 (:28:)
+    clearCompletedBtn : document.querySelector("#btn-clear-completed"),    //W4D5 (1:18:)
     cfg : {                                      //W4D5 (1:05:)
         maxKeyDown : 10,
         },
@@ -44,7 +45,7 @@ function main() {                           //W4D4 (1:15:)
         }
       }; 
 
-      app.inputField.onkeyup = (event) => {         //W4D5 (:45:)(1:11:)
+    app.inputField.onkeyup = (event) => {         //W4D5 (:45:)(1:11:)
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             console.log("Reseting keydown count");
@@ -60,7 +61,35 @@ function main() {                           //W4D4 (1:15:)
     }
 
 
+    app.clearCompletedBtn.onclick = () => {         //W4D5 (1:20:)
+        console.log("clicked Complete clear btn");
+
+        //loop through all jobs
+        //if job is marked as completed 
+        //then we press delete button
+        const completedJobs = [];                //W4D5 (1:30:)
+        //we loop through all children of main jobs container
+        //grab all completed jobs
+        //NOTE: we don't want tp modify a live list by removing nodes
+        //instead we save nodes to be deleted later
+        for (let todo of app.todoCont.children) {
+            const chkBox = todo.querySelector('[type="checkbox"]');
+            if (chkBox.checked) {
+                completedJobs.push(todo);
+            }
+        }
+
+        //now we can safely delete done jobs
+        for (let doneJob of completedJobs) {
+            doneJob.remove();                 //W4D5 (1:36:)
+        }
+    }
+
 }
+
+
+
+
 
 function addJobs(json) {                        //W4D4 (2:34:)
     console.log("Ready to add " + json.length + " jobs");
