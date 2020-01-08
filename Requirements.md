@@ -1,4 +1,4 @@
-# MAin functionality (MVP)
+# Main functionality (MVP)
 
 * Add New TODOs
 * Mark existing TODOs as done

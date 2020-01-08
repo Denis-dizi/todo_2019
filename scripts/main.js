@@ -1,4 +1,14 @@
-console.log("Started ToDo app.");           //W4D4 created, W4D5
+console.log("Started ToDo app.");          //W4D4(:23:) created, W4D5
+
+//=========W4D4(:33:) 1-st step. Started to write JS=============================
+// const mybtn = document.querySelector("#btn1")
+// //we create an event handler for add button
+// mybtn.onclick = (event) => {                                  //W4D4 (:34:)
+//     console.log("You pressed ADD btn");
+//     const inputField = document.querySelector("#myinput");
+//     console.log("Input value is: " + app.inputField.value);
+
+
 //app holds our global state
 const app = {
     jobId : 0,
