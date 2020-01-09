@@ -1,6 +1,6 @@
 console.log("Started ToDo app.");          //W4D4(:23:) created, W4D5
 
-//=========W4D4(:33:) 1-st step. Started to write JS=============================
+//=========W4D4(:33:) 1-st step. Started to write JS==================================
 // const mybtn = document.querySelector("#btn1")
 // //we create an event handler for add button
 // mybtn.onclick = (event) => {                                  //W4D4 (:34:)
@@ -8,7 +8,7 @@ console.log("Started ToDo app.");          //W4D4(:23:) created, W4D5
 //     const inputField = document.querySelector("#myinput");
 //     console.log("Input value is: " + app.inputField.value);
 
-//  //=========W4D4(:38:) 2-nd step. Add child=======================================
+//  //=========W4D4(:38:) 2-nd step. Add child========================================
 //     //Add new ToDo: Create NewEl-->DabutSaturs->PieliktBernu  //W4D4 (:40:)
 //     const newTodo = document.createElement("div");
 //     newTodo.innerText = inputField.value; // pievienot saturs
@@ -16,13 +16,13 @@ console.log("Started ToDo app.");          //W4D4(:23:) created, W4D5
 //     todoCont.appendChild(newTodo);
 // }
 //refactored to "function addTodo()" at W4D4(:50:)
-//===============================================================================
+//====================================================================================
 
-//app holds our global state
-const app = {                          //W4D4 (::)??????
-    jobId : 0,
-    mybtn : document.querySelector("#btn1"),
-    todoCont : document.querySelector("#todos-cont"),
+//====app holds our global state======================================================
+const app = {                                                     //W4D4 (1:29:)
+    jobId : 0,                                                    //W4D4 (1:17:)(1:25:)
+    mybtn : document.querySelector("#btn1"),                      //W4D4 (:33:)(1:18:)
+    todoCont : document.querySelector("#todos-cont"),             //W4D4 (:40:)(1:18:)
     getBtn : document.querySelector("#btn0"),                     //W4D4 (2:27:)
     jobsUrl : "https://jsonplaceholder.typicode.com/todos",       //W4D4 (2:30:)
     inputField : document.querySelector("#myinput"),              //W4D5 (:28:)
@@ -32,6 +32,7 @@ const app = {                          //W4D4 (::)??????
         },
         currKeyDown : 0
 };
+//====================================================================================
 
 main();                                                    //W4D4 (1:21:)
 
@@ -73,9 +74,9 @@ function main() {                                          //W4D4 (1:15:)
         }
     }
 
-    //====Get Jobs btn. Fetch example=================================================
+    //====Get Jobs from outsource. Fetch example======================================
     //https://jsonplaceholder.typicode.com/             //W4D4 (2:20:)
-    app.getBtn.onclick = () => {                        //W4D4 (2:27:)(2:30:)
+    app.getBtn.onclick = () => {                        //W4D4 (2:27:)(2:30:)(2:33:)
         console.log("You pressed get Jobs btn");
         fetch(app.jobsUrl)
             .then(response => response.json())
@@ -109,22 +110,16 @@ function main() {                                          //W4D4 (1:15:)
 
 }
 
-
-
-
-
+//====Add Jobs from Get Jobs =========================================================
 function addJobs(json) {                                 //W4D4 (2:34:)
     console.log("Ready to add " + json.length + " jobs");
-
-    console.log("Adding",json[0]);
-
-
+    console.log("Adding 1-st job:",json[0]);
     //create a loop to add first 20 jobs, can remove && i < 20 when done testing
-    for (let i=0; i < json.length && i<20; i++) {         //W4D4 (2:46:)
+    for (let i=0; i < json.length && i<20; i++) {        //W4D4 (2:46:)(2:48:)
         addTodo(app.todoCont, json[i].title);
     }
-
 }
+//==end===============================================================================
 
 
 //====Added global state, full new job ================================================
@@ -145,7 +140,6 @@ function addTodo(parent, value) {                  //W4D4 (:49:)(:53:)
     //value could be malicious so we only use innerText not innerHTML!!! //W4D4 (1:50:)
     const jdesc = newTodo.querySelector("label");    //W4D4 (1:32:)
     jdesc.innerText = value;                         //W4D4 (1:33:)
-
     parent.appendChild(newTodo);                     //W4D4 (:49:)(:53:)
     //==end===========================================================================
 
