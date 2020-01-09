@@ -1,20 +1,21 @@
 console.log("Started ToDo app.");          //W4D4(:23:) created, W4D5
 
 //=========W4D4(:33:) 1-st step. Started to write JS=============================
-    const mybtn = document.querySelector("#btn1")
-    //we create an event handler for add button
-    mybtn.onclick = (event) => {                                  //W4D4 (:34:)
-        console.log("You pressed ADD btn");
-        const inputField = document.querySelector("#myinput");
-        console.log("Input value is: " + app.inputField.value);
+const mybtn = document.querySelector("#btn1")
+//we create an event handler for add button
+mybtn.onclick = (event) => {                                  //W4D4 (:34:)
+    console.log("You pressed ADD btn");
+    const inputField = document.querySelector("#myinput");
+    console.log("Input value is: " + app.inputField.value);
 
-//=========W4D4(:38:) 2-nd step. Add child=======================================
-        //Add new ToDo: Create NewEl-->DabutSaturs->PieliktBernu  //W4D4 (:40:)
-        const newTodo = document.createElement("div");
-        newTodo.innerText = inputField.value; // pievienot saturs
-        const todoCont = document.querySelector("#todos-cont");
-        todoCont.appendChild(newTodo);
-    }
+ //=========W4D4(:38:) 2-nd step. Add child=======================================
+    //Add new ToDo: Create NewEl-->DabutSaturs->PieliktBernu  //W4D4 (:40:)
+    const newTodo = document.createElement("div");
+    newTodo.innerText = inputField.value; // pievienot saturs
+    const todoCont = document.querySelector("#todos-cont");
+    todoCont.appendChild(newTodo);
+}
+//refactored to "function addTodo()" at W4D4(:50:)
 //===============================================================================
 
 //app holds our global state
@@ -30,8 +31,9 @@ const app = {
         maxKeyDown : 10,
         },
         currKeyDown : 0
-    };
-main();
+};
+
+main();                                     //W4D4 (1:21:)
 
 function main() {                           //W4D4 (1:15:)
     //we create an event handler for add button
@@ -123,23 +125,28 @@ function addJobs(json) {                        //W4D4 (2:34:)
 }
 
 
- function addTodo(parent, value) {             //W4D4 (:53:)
+//====Added global state, full new job ================================================
+//====(pressing button adds chekbox, div, new btn. See console W4D4(1:34:))============
+
+function addTodo(parent, value) {                  //W4D4 (:49:)(:53:)
     //Create New Todo
-    const newTodo = document.createElement("div");//W4D4 (1:13:);updated:(1:23:);
-    newTodo.classList.add("job-cont-"+app.jobId);
+    const newTodo = document.createElement("div");  //W4D4 (:50:)(1:13:);updated:(1:23:);
+    newTodo.classList.add("job-cont-"+app.jobId);   //W4D4 (1:27:)
     //using backticks for some string interpolation
-    newTodo.innerHTML = `                      
+    newTodo.innerHTML = `                           
         <input type="checkbox" name="" id="j-chk-${app.jobId}">
         <label class="job-desc" id="j-desc-${app.jobId}"></label>
         <button class="del-btn" id="j-del-${app.jobId}">DELETE</button>
-        `;
+        `;                                          //W4D4(1:13:)(1:36:) copied from html
     //newTodo only has one label
 
     //value could be malicious so we only use innerText not innerHTML!!!
-    const jdesc = newTodo.querySelector("label");
-    jdesc.innerText = value;
+    const jdesc = newTodo.querySelector("label");    //W4D4 (1:32:)
+    jdesc.innerText = value;                         //W4D4 (1:33:)
 
-    parent.appendChild(newTodo);
+    parent.appendChild(newTodo);                     //W4D4 (:49:)(:53:)
+    //================================================================================
+
 
     const delBtn = newTodo.querySelector(".del-btn");//W4D4 (1:37:)
     
