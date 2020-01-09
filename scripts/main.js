@@ -1,25 +1,25 @@
 console.log("Started ToDo app.");          //W4D4(:23:) created, W4D5
 
 //=========W4D4(:33:) 1-st step. Started to write JS=============================
-const mybtn = document.querySelector("#btn1")
-//we create an event handler for add button
-mybtn.onclick = (event) => {                                  //W4D4 (:34:)
-    console.log("You pressed ADD btn");
-    const inputField = document.querySelector("#myinput");
-    console.log("Input value is: " + app.inputField.value);
+// const mybtn = document.querySelector("#btn1")
+// //we create an event handler for add button
+// mybtn.onclick = (event) => {                                  //W4D4 (:34:)
+//     console.log("You pressed ADD btn");
+//     const inputField = document.querySelector("#myinput");
+//     console.log("Input value is: " + app.inputField.value);
 
- //=========W4D4(:38:) 2-nd step. Add child=======================================
-    //Add new ToDo: Create NewEl-->DabutSaturs->PieliktBernu  //W4D4 (:40:)
-    const newTodo = document.createElement("div");
-    newTodo.innerText = inputField.value; // pievienot saturs
-    const todoCont = document.querySelector("#todos-cont");
-    todoCont.appendChild(newTodo);
-}
+//  //=========W4D4(:38:) 2-nd step. Add child=======================================
+//     //Add new ToDo: Create NewEl-->DabutSaturs->PieliktBernu  //W4D4 (:40:)
+//     const newTodo = document.createElement("div");
+//     newTodo.innerText = inputField.value; // pievienot saturs
+//     const todoCont = document.querySelector("#todos-cont");
+//     todoCont.appendChild(newTodo);
+// }
 //refactored to "function addTodo()" at W4D4(:50:)
 //===============================================================================
 
 //app holds our global state
-const app = {
+const app = {                          //W4D4 (::)??????
     jobId : 0,
     mybtn : document.querySelector("#btn1"),
     todoCont : document.querySelector("#todos-cont"),
@@ -140,21 +140,21 @@ function addTodo(parent, value) {                  //W4D4 (:49:)(:53:)
         `;                                          //W4D4(1:13:)(1:36:) copied from html
     //newTodo only has one label
 
-    //value could be malicious so we only use innerText not innerHTML!!!
+    //value could be malicious so we only use innerText not innerHTML!!! //W4D4 (1:50:)
     const jdesc = newTodo.querySelector("label");    //W4D4 (1:32:)
     jdesc.innerText = value;                         //W4D4 (1:33:)
 
     parent.appendChild(newTodo);                     //W4D4 (:49:)(:53:)
-    //================================================================================
+    //==end==============================================================================
 
 
-    const delBtn = newTodo.querySelector(".del-btn");//W4D4 (1:37:)
-    
-    delBtn.onclick = function(event) {
+    //====DELETE btn handlers=========================================================
+    const delBtn = newTodo.querySelector(".del-btn");           //W4D4 (1:37:)
+    delBtn.onclick = function(event) {                          //W4D4 (1:37:)
         console.log("removing parent of element with id "+this.id);
         
-        //if we use arrow func. this won't be available for button  //1.v. W4D4 (1:37:)
-        //this.parentElement.remove();
+        //if we use arrow func. this won't be available for button  //1.v. W4D4 (1:37:)(1:48:)
+        //this.parentElement.remove(); //onclickfunc without event
 
         //careful with event if possible bubbling   //2.v. W4D4 (1:45:)
         event.target.parentElement.remove();
@@ -163,10 +163,12 @@ function addTodo(parent, value) {                  //W4D4 (:49:)(:53:)
         //parse that id and use that id to get needed element
         //such as .job-cont-myid
     }
+    //==end============================================================================
+
 
     const chkBox = newTodo.querySelector('[type="checkbox"]');  //W4D4 (1:58:)
 
-    chkBox.onclick = function(event) {                //W4D4 (1:58:)
+    chkBox.onclick = function(event) {                          //W4D4 (1:58:)
         
         //const jDesc = event.target.nextElementSibling;//W4D4 (2:15:)
         
