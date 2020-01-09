@@ -23,21 +23,21 @@ const app = {                          //W4D4 (::)??????
     jobId : 0,
     mybtn : document.querySelector("#btn1"),
     todoCont : document.querySelector("#todos-cont"),
-    getBtn : document.querySelector("#btn0"),    //W4D4 (2:27:)
-    jobsUrl : "https://jsonplaceholder.typicode.com/todos",
-    inputField : document.querySelector("#myinput"),    //W4D5 (:28:)
-    clearCompletedBtn : document.querySelector("#btn-clear-completed"),    //W4D5 (1:18:)
-    cfg : {                                      //W4D5 (1:05:)
+    getBtn : document.querySelector("#btn0"),                     //W4D4 (2:27:)
+    jobsUrl : "https://jsonplaceholder.typicode.com/todos",       //W4D4 (2:30:)
+    inputField : document.querySelector("#myinput"),              //W4D5 (:28:)
+    clearCompletedBtn : document.querySelector("#btn-clear-completed"),//W4D5 (1:18:)
+    cfg : {                                                       //W4D5 (1:05:)
         maxKeyDown : 10,
         },
         currKeyDown : 0
 };
 
-main();                                     //W4D4 (1:21:)
+main();                                                    //W4D4 (1:21:)
 
-function main() {                           //W4D4 (1:15:)
+function main() {                                          //W4D4 (1:15:)
     //we create an event handler for add button
-    app.mybtn.onclick = (event) => {               //W4D4 (:34:)
+    app.mybtn.onclick = (event) => {                       //W4D4 (:34:)
         console.log("You pressed ADD btn");
         console.log("Input value is: " + app.inputField.value);
 
@@ -65,7 +65,7 @@ function main() {                           //W4D4 (1:15:)
         }
       }; 
 
-    app.inputField.onkeyup = (event) => {         //W4D5 (:45:)(1:11:)
+    app.inputField.onkeyup = (event) => {                //W4D5 (:45:)(1:11:)
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             console.log("Reseting keydown count");
@@ -73,15 +73,17 @@ function main() {                           //W4D4 (1:15:)
         }
     }
 
-    app.getBtn.onclick = () => {                //W4D4 (2:27:)
+    //====Get Jobs btn. Fetch example=================================================
+    //https://jsonplaceholder.typicode.com/             //W4D4 (2:20:)
+    app.getBtn.onclick = () => {                        //W4D4 (2:27:)(2:30:)
         console.log("You pressed get Jobs btn");
         fetch(app.jobsUrl)
             .then(response => response.json())
             .then(json => addJobs(json))
     }
+    //==end===========================================================================
 
-
-    app.clearCompletedBtn.onclick = () => {         //W4D5 (1:20:)
+    app.clearCompletedBtn.onclick = () => {              //W4D5 (1:20:)
         console.log("clicked Complete clear btn");
 
         //loop through all jobs
@@ -111,14 +113,14 @@ function main() {                           //W4D4 (1:15:)
 
 
 
-function addJobs(json) {                        //W4D4 (2:34:)
+function addJobs(json) {                                 //W4D4 (2:34:)
     console.log("Ready to add " + json.length + " jobs");
 
     console.log("Adding",json[0]);
 
 
     //create a loop to add first 20 jobs, can remove && i < 20 when done testing
-    for (let i=0; i < json.length && i<20; i++) {                  //W4D4 (2:46:)
+    for (let i=0; i < json.length && i<20; i++) {         //W4D4 (2:46:)
         addTodo(app.todoCont, json[i].title);
     }
 
@@ -126,7 +128,7 @@ function addJobs(json) {                        //W4D4 (2:34:)
 
 
 //====Added global state, full new job ================================================
-//====(pressing button adds chekbox, div, new btn. See console W4D4(1:34:))============
+//===(pressing button adds chekbox, div, new btn. See console on W4D4(1:34:))==========
 
 function addTodo(parent, value) {                  //W4D4 (:49:)(:53:)
     //Create New Todo
