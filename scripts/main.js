@@ -145,7 +145,7 @@ function addTodo(parent, value) {                  //W4D4 (:49:)(:53:)
     jdesc.innerText = value;                         //W4D4 (1:33:)
 
     parent.appendChild(newTodo);                     //W4D4 (:49:)(:53:)
-    //==end==============================================================================
+    //==end===========================================================================
 
 
     //====DELETE btn handlers=========================================================
@@ -154,37 +154,36 @@ function addTodo(parent, value) {                  //W4D4 (:49:)(:53:)
         console.log("removing parent of element with id "+this.id);
         
         //if we use arrow func. this won't be available for button  //1.v. W4D4 (1:37:)(1:48:)
-        //this.parentElement.remove(); //onclickfunc without event
+        //this.parentElement.remove();      //onclickfunc without event
 
-        //careful with event if possible bubbling   //2.v. W4D4 (1:45:)
+        //careful with event if possible bubbling               //2.v. W4D4 (1:45:)
         event.target.parentElement.remove();
 
-        //third way would be get id of the element  //3.v. W4D4 (1:46:)
+        //third way would be get id of the element              //3.v. W4D4 (1:46:)
         //parse that id and use that id to get needed element
         //such as .job-cont-myid
     }
     //==end============================================================================
 
-
+    //====ChekBox======================================================================
     const chkBox = newTodo.querySelector('[type="checkbox"]');  //W4D4 (1:58:)
-
     chkBox.onclick = function(event) {                          //W4D4 (1:58:)
-        
-        //const jDesc = event.target.nextElementSibling;//W4D4 (2:15:)
+        //https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling
+        //const jDesc = event.target.nextElementSibling;        //W4D4 (2:15:)
         
         //tricker alternative using id and spliting our id
-        const id = event.target.id.split("-")[2];   //W4D4 (2:16:)
-        const descId = "#j-desc-"+id;
-        const jDesc = document.querySelector(descId);
+        const id = event.target.id.split("-")[2];               //W4D4 (2:15:)
+        const descId = "#j-desc-"+id;                           //W4D4 (2:18:)
+        const jDesc = document.querySelector(descId);           //W4D4 (2:14:)(2:19)
         
-        if (event.target.checked) {
+        if (event.target.checked) {                            //W4D4 (2:04:)(2:14)
              //console.log("nextSibling "+event.target.nextSibling.id);
              jDesc.style.textDecoration = "line-through";
          }else{
              jDesc.style.textDecoration = "none";
          }
-
     }
+    //==end============================================================================
 
     //TODO move updating to separate function
     app.jobId++;
