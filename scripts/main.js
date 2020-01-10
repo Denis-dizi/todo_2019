@@ -45,34 +45,35 @@ function main() {                                          //W4D4 (1:15:)
         //Add new ToDo: Create NewEl-->DabutSaturs->PieliktBernu  //W4D4 (:40:)
         addTodo(app.todoCont, app.inputField.value);
     }
-
-    //app.inputField.onchange this will fire on any commitment
+    //====input on Enter===============================================================
+    //app.inputField.onchange //this will fire on any commitment
     //meaning click outside, enter key, click on button outside etc
     //so we will use specific keyboard event
-
-    app.inputField.onkeydown = function(event) {         //W4D5 (:45:)
+    app.inputField.onkeydown = function(event) {         //W4D5(:34:)(:45:)
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
 
             //limiting max times that onkeydown Enter will add element
-            if (app.currKeyDown >= app.cfg.maxKeyDown) return;                    //W4D5 (1:05:)
+            if (app.currKeyDown >= app.cfg.maxKeyDown) return;     //W4D5 (1:05:)
           
             app.currKeyDown++;
-            // Cancel the default action, if needed
+            // Cancel the default action, if needSed
           console.log("You pressed Enter");
           event.preventDefault();
           // Trigger the button element with a click
           app.mybtn.click();
         }
-      }; 
+    }
 
-    app.inputField.onkeyup = (event) => {                //W4D5 (:45:)(1:11:)
+    app.inputField.onkeyup = (event) => {                //W4D5(:34:)(:45:)(1:11:)
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             console.log("Reseting keydown count");
             app.currKeyDown = 0;
         }
     }
+    //==end===========================================================================
+
 
     //====Get Jobs from outsource. Fetch example======================================
     //https://jsonplaceholder.typicode.com/             //W4D4 (2:20:)
@@ -134,8 +135,8 @@ function addTodo(parent, value) {                  //W4D4 (:49:)(:53:)
         <input type="checkbox" name="" id="j-chk-${app.jobId}">
         <label class="job-desc" id="j-desc-${app.jobId}"></label>
         <button class="del-btn" id="j-del-${app.jobId}">DELETE</button>
-        `;                                          //W4D4(1:13:)(1:36:) copied from html
-    //newTodo only has one label
+        `;                        //W4D4(1:13:)(1:36:)copied from html; W4D5(0:24:)
+            //newTodo only has one label
 
     //value could be malicious so we only use innerText not innerHTML!!! //W4D4 (1:50:)
     const jdesc = newTodo.querySelector("label");    //W4D4 (1:32:)
