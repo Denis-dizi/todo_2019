@@ -46,16 +46,20 @@ function main() {                                          //W4D4 (1:15:)
         addTodo(app.todoCont, app.inputField.value);
     }
     //====input on Enter===============================================================
-    //app.inputField.onchange //this will fire on any commitment
-    //meaning click outside, enter key, click on button outside etc
-    //so we will use specific keyboard event
-    app.inputField.onkeydown = function(event) {         //W4D5(:34:)(:45:)
+    // v1. this will fire on any commitment,
+    //meaning click outside, enter key, click on button outside etc //W4D5(:43:)
+    // app.inputField.onchange = (event) => {              //W4D5(:34:)(:42:)
+    //     console.log("You pressed Add");
+    //     console.log("Input value is: " + app.inputField.value);
+    //     addTodo(app.todoCont, app.inputField.value);
+    // }
+    
+    // v2. so we will use specific keyboard event          //W4D5(:43:)
+    app.inputField.onkeydown = function(event) {           //W4D5(:45:)
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
-
             //limiting max times that onkeydown Enter will add element
             if (app.currKeyDown >= app.cfg.maxKeyDown) return;     //W4D5 (1:05:)
-          
             app.currKeyDown++;
             // Cancel the default action, if needSed
           console.log("You pressed Enter");
@@ -65,7 +69,7 @@ function main() {                                          //W4D4 (1:15:)
         }
     }
 
-    app.inputField.onkeyup = (event) => {                //W4D5(:34:)(:45:)(1:11:)
+    app.inputField.onkeyup = (event) => {                //W4D5(:45:)(1:11:)
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             console.log("Reseting keydown count");
@@ -192,20 +196,13 @@ function addTodo(parent, value) {                  //W4D4 (:49:)(:53:)
 
 
 
-/* rezerve: delete 1.variants.
-const delBtn = newTodo.querySelector(".del-btn");//W4D4 (1:37:)
-    delBtn.onclick = function() {
-        console.log("removing parent of element with id "+this.id);
-        this.parentElement.remove();
+//rezerve: delete 1.variants.
+// const delBtn = newTodo.querySelector(".del-btn");//W4D4 (1:37:)
+// delBtn.onclick = function() {
+//     console.log("removing parent of element with id "+this.id);
+//     this.parentElement.remove();
     
-    
-    
-app.inputField.onchange = () => {
-    console.log("New input is:  " + app.inputField.value);
-}
-    
-    
-    
-    
-    
-    }*/
+//     app.inputField.onchange = () => {
+//         console.log("New input is:  " + app.inputField.value);
+//     }
+// }
