@@ -27,8 +27,8 @@ const app = {                                                     //W4D4 (1:29:)
     jobsUrl : "https://jsonplaceholder.typicode.com/todos",       //W4D4 (2:30:)
     inputField : document.querySelector("#myinput"),              //W4D5 (:28:)
     clearCompletedBtn : document.querySelector("#btn-clear-completed"),//W4D5 (1:18:)
-    cfg : {                                                       //W4D5 (1:05:)
-        maxKeyDown : 10,
+    cfg : {                                                       //W4D5 (1:05:)(08)
+        maxKeyDown : 5,
         },
         currKeyDown : 0
 };
@@ -47,18 +47,21 @@ function main() {                                          //W4D4 (1:15:)
     }
     //====input on Enter===============================================================
     // v1. this will fire on any commitment,
-    //meaning click outside, enter key, click on button outside etc //W4D5(:43:)
-    // app.inputField.onchange = (event) => {              //W4D5(:34:)(:42:)
+    //meaning click outside, enter key, click on button outside etc  //W4D5(:43:)
+    // app.inputField.onchange = (event) => {                        //W4D5(:34:)(:42:)
     //     console.log("You pressed Add");
     //     console.log("Input value is: " + app.inputField.value);
     //     addTodo(app.todoCont, app.inputField.value);
     // }
     
-    // v2. so we will use specific keyboard event          //W4D5(:43:)
-    app.inputField.onkeydown = function(event) {           //W4D5(:45:)
+    // v2. so we will use specific keyboard event                   //W4D5(:43:)
+    // https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+    //*.onkeyup - in the begin (you can hold btn. No timer need)
+    app.inputField.onkeydown = function(event) {                    //W4D5(:45:)(48)
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
-            //limiting max times that onkeydown Enter will add element
+            //limiting max times that onkeydown Enter will add element - timer(delay) //W4D5 (0:48:)
+            // https://stackoverflow.com/questions/17514798/how-to-disable-repetitive-keydown-in-javascript //W4D5 (0:55:)
             if (app.currKeyDown >= app.cfg.maxKeyDown) return;     //W4D5 (1:05:)
             app.currKeyDown++;
             // Cancel the default action, if needSed
@@ -68,7 +71,7 @@ function main() {                                          //W4D4 (1:15:)
           app.mybtn.click();
         }
     }
-
+    // resets keydown limiter on key up
     app.inputField.onkeyup = (event) => {                //W4D5(:45:)(1:11:)
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
