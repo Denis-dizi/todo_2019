@@ -92,30 +92,28 @@ function main() {                                          //W4D4 (1:15:)
     }
     //==end===========================================================================
 
-    app.clearCompletedBtn.onclick = () => {              //W4D5 (1:20:)
+    //====clear Compele===============================================================
+    app.clearCompletedBtn.onclick = () => {             //W4D5 (1:16:)(20)
         console.log("clicked Complete clear btn");
-
-        //loop through all jobs
-        //if job is marked as completed 
-        //then we press delete button
-        const completedJobs = [];                //W4D5 (1:30:)
+        //loop through all jobs                         //W4D5 (1:22:)
+        //if job is marked as completed then we press delete button
+        const completedJobs = [];                       //W4D5 (1:29:)
         //we loop through all children of main jobs container
-        //grab all completed jobs
-        //NOTE: we don't want tp modify a live list by removing nodes
-        //instead we save nodes to be deleted later
-        for (let todo of app.todoCont.children) {
+        //grab all completed jobs.
+        //NOTE: we don't want tp modify a live list by removing nodes  //W4D5 (1:36:)
+        //instead we save nodes to be deleted later.
+        for (let todo of app.todoCont.children) {       //W4D5 (1:30:)
             const chkBox = todo.querySelector('[type="checkbox"]');
             if (chkBox.checked) {
                 completedJobs.push(todo);
             }
         }
-
         //now we can safely delete done jobs
-        for (let doneJob of completedJobs) {
-            doneJob.remove();                 //W4D5 (1:36:)
+        for (let doneJob of completedJobs) {             //W4D5 (1:33:)
+            doneJob.remove();
         }
     }
-
+    //==end===========================================================================
 }
 
 //====Add Jobs from Get Jobs =========================================================
